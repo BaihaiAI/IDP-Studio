@@ -9,7 +9,7 @@
 
 ## System Requirements
 
-You will need Git, Rustup, Python 3(v3.8+), the Node.js active LTS (v16.17.0), yarn, and npm (v8+). 
+You will need Git, Rustup(1.70.0 or newer), Python 3(v3.8+), the Node.js active LTS (v16.17.0), yarn, and npm (v8+). 
 
 ### Linux additional build dependencies
 
@@ -66,6 +66,23 @@ the output of `echo $CONDA_PREFIX` from your terminal.)
 ```toml
 [target.x86_64-apple-darwin]
 rustflags = ["-C", "link-arg=-undefined", "-C", "link-arg=dynamic_lookup", "-C", "link-arg=-Wl,-rpath,`CONDA_PREFIX`/lib"]
+```
+
+## rust-toolchain.toml configuration
+
+### check rust version
+
+```shell
+> cd ~&rustc -V
+> rustc 1.73.0 (cc66ad468 2023-10-03)
+```
+
+change channel to your's rust version, eg: 1.73.0
+```toml
+[toolchain]
+channel = "1.73.0"
+components = ["rustfmt", "clippy"]
+targets = ["x86_64-unknown-linux-musl"]
 ```
 
 ## Compile and Run

@@ -9,7 +9,7 @@
 
 ## 环境要求
 
-需要Git、Rustup、Python 3（v3.8及以上）、Node.js active LTS（v16.17.0）、yarn和npm（v8及以上）。
+需要Git、Rustup(1.17.0及以上)、Python 3（v3.8及以上）、Node.js active LTS（v16.17.0）、yarn和npm（v8及以上）。
 
 ### Linux操作系统所需额外构建依赖项
 
@@ -67,6 +67,23 @@ PYO3_PYTHON="/opt/homebrew/bin/python3"
 ```toml
 [target.x86_64-apple-darwin]
 rustflags = ["-C", "link-arg=-undefined", "-C", "link-arg=dynamic_lookup", "-C", "link-arg=-Wl,-rpath,`CONDA_PREFIX`/lib"]
+```
+
+## 配置rust-toolchain.toml
+
+### 查看rust版本
+
+```shell
+> cd ~&rustc -V
+> rustc 1.73.0 (cc66ad468 2023-10-03)
+```
+
+修改channel为1.73.0
+```toml
+[toolchain]
+channel = "1.73.0"
+components = ["rustfmt", "clippy"]
+targets = ["x86_64-unknown-linux-musl"]
 ```
 
 ## 编译和运行
